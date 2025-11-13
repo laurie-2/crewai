@@ -6,7 +6,7 @@ services:
     container_name: crewai-service
     restart: unless-stopped
     ports:
-      - "8081:8080"
+      - "8090:8080"
     volumes:
       - crewai_data:/app/app_data
     environment:
