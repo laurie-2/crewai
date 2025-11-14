@@ -6,16 +6,16 @@ services:
     container_name: crewai-service
     restart: unless-stopped
     ports:
-      - "8090:8080"
+      - "8001:8000"
     volumes:
       - crewai_data:/app/app_data
     environment:
       - ENVIRONMENT=production
       - PYTHONPATH=/app/src
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://127.0.0.1:8080/health || exit 1"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 30s
-      timeout: 5s
+      timeout: 10s
       retries: 3
 
 volumes:
